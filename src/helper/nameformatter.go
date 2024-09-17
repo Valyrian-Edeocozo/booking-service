@@ -5,7 +5,6 @@ import (
 )
 
 func FormatNames(bookings []string, firstName string, lastName string) []string {
-	bookings = append(bookings, firstName+" "+lastName)
 
 	firstNames := []string{}
 
