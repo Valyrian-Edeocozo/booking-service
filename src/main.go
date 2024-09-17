@@ -22,8 +22,9 @@ func main() {
 		var userTickets int
 
 		greetings(conferenceName, conferenceTickets, remainingTickets)
-		entries.CollectInput(firstName, lastName, email, userTickets)
-		entries.ValidateEntries(firstName, lastName, email, userTickets, remainingTickets)
+		firstName, lastName, email, userTickets = entries.CollectInput(firstName, lastName, email, userTickets)
+		var ticketsRemaining = &remainingTickets
+		entries.ValidateEntries(firstName, lastName, email, userTickets, ticketsRemaining)
 		firstNames := entries.FormatNames(bookings, firstName, lastName)
 
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
