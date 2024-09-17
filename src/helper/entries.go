@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func CollectInput(firstName string, lastName string, email string, userTickets int) {
+func CollectInput(firstName string, lastName string, email string, userTickets int) (string, string, string, int) {
 	fmt.Println("Enter your first name")
 	fmt.Scan(&firstName)
 
@@ -17,22 +17,24 @@ func CollectInput(firstName string, lastName string, email string, userTickets i
 
 	fmt.Println("Enter the number of tickets you want to buy")
 	fmt.Scan(&userTickets)
+
+	return firstName, lastName, email, userTickets
 }
 
-func ValidateEntries(firstName string, lastName string, email string, userTickets int, remainingTickets int) {
+func ValidateEntries(firstName string, lastName string, email string, userTickets int, remainingTickets *int) {
 	isvalidName := len(firstName) >= 2 && len(lastName) >= 2
-	isValidEmailAddress := strings.Contains("@", email)
-	isValidNumberOfTickets := userTickets <= remainingTickets && userTickets > 0
+	isValidEmailAddress := strings.Contains(email, "@")
+	isValidNumberOfTickets := userTickets <= *remainingTickets && userTickets > 0
 
 	if isValidEmailAddress && isValidNumberOfTickets && isvalidName {
 
 		fmt.Printf("Thank you %v %v for booking %v tickets. You will receive a confirmation email at %v\n", firstName, lastName, userTickets, email)
 
-		remainingTickets = remainingTickets - userTickets
+		*remainingTickets = *remainingTickets - userTickets
 
-		fmt.Printf("The remaining ticket is %v\n", remainingTickets)
+		fmt.Printf("The remaining ticket is %v\n", *remainingTickets)
 
-		if remainingTickets == 0 {
+		if *remainingTickets == 0 {
 			fmt.Println("Sorry, all tickets are sold out. Come back next year")
 		}
 	} else {
