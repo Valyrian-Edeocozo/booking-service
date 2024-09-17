@@ -25,6 +25,9 @@ func main() {
 		firstName, lastName, email, userTickets = entries.CollectInput(firstName, lastName, email, userTickets)
 		var ticketsRemaining = &remainingTickets
 		entries.ValidateEntries(firstName, lastName, email, userTickets, ticketsRemaining)
+
+		bookings = append(bookings, firstName+" "+lastName)
+
 		firstNames := entries.FormatNames(bookings, firstName, lastName)
 
 		fmt.Printf("The first names of bookings are: %v\n", firstNames)
