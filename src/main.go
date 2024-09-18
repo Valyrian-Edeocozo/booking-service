@@ -3,6 +3,7 @@ package main
 import (
 	"booking-app/src/helper"
 	"fmt"
+	"strconv"
 )
 
 var conferenceName = "Go Conference"
@@ -13,6 +14,34 @@ var remainingTickets = 50
 var bookings []string
 
 func main() {
+
+	var year = "1234"
+	intValue, err := strconv.Atoi(year)
+
+	if err != nil {
+		panic("error")
+	}
+
+	value := intValue / 100
+
+	result := strconv.Itoa(value + 1)
+
+	var numValue = result[len(result)-1:]
+	var suffix = ""
+
+	switch numValue {
+	case "1":
+		suffix = "st"
+	case "2":
+		suffix = "nd"
+	case "3":
+		suffix = "rd"
+	default:
+		suffix = "th"
+
+	}
+	// return valueToReturn
+	fmt.Println(result + suffix)
 
 	for {
 
